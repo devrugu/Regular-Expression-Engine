@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regex</title>
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="#">REGEX |</a>
+                <i class="fas fa-search fa-2x"></i>
+                
+             </div>
+             
+            <ul>
+                <li><a href="#">Automata Project</a> </li>
+            </ul>
+        </div>
+        <div class="column">
+             <label for="regex">Regex:</label>
+             
+             <input type="text" ref="text1" id="regexp" name="fname" value="" placeholder="Enter Regex..."/>
+        </div>
+        <div class="center">
+
+        <label for="fname">Text for pattern search:</label>
+            <textarea  type="text" ref="text2" id="text" name="txt" value="" rows="25" cols="120" placeholder="Enter text here..."></textarea>
+            <p id="sonuc"></p>
+            
+            
+        </div>
+        
+            <div class="buttonloc">
+            <button style="background-color:#622569;color:white;width: 190%;border-radius: 25px;" onclick="createMatcher(regexp.value,text.value)">NFA</button>
+            <script src="regex.js"></script>
+           
+            </div>
+            </div>
+    
+
+    
+</body>
+</html> 
