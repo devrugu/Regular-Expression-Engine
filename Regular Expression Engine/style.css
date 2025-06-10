@@ -9,7 +9,7 @@
 
 .container{
    
-    background-color:#d6d4e0;
+    background: linear-gradient(135deg, #f0e6ff, #d6d4e0);
     
     height: 100vh;
     background-size: 100% 100%;
@@ -57,10 +57,6 @@
 }
 
 .container .center{
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%,-50%);
     font-family: sans-serif;
     user-select: none;
 }
@@ -80,24 +76,3 @@
     text-align: center;
 }
 
-.container .button{
-    font-family: "proxima nova";
-    position: absolute;
-    top: 500px;
-    left: 885px;
-    color: #622569;
-    font-weight: 100;
-    font-size: 22px;
-    outline: none;
-    border:solid 2px #622569;
-    border-radius: 25px;
-    padding: 10px 45px;
-    -webkit-transition-duration: 500ms;
-    transition-duration: 500ms;
-    text-decoration:none    
-}
-
-.button:hover{
-    background-color:#622569;
-    color: #fff;
-}

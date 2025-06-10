@@ -8,7 +8,7 @@
 
 .container{
    
-    background-color: #d6d4e0;
+    background: linear-gradient(135deg, #f0e6ff, #d6d4e0);
     
     height: 100vh;
     background-size: 100% 100%;
@@ -109,8 +109,9 @@ textarea {
 .nfa-button {
     background-color:#622569;
     color:white;
-    width: 190%;
-    border-radius: 25px;
+    border-radius:25px;
+    padding:8px 20px;
+    border:none;
 }
 #sonuc{
     background-color: white;
@@ -120,3 +121,13 @@ textarea {
     color:black ;
 }
 mark { background-color: yellow; }
+body.dark-mode {
+    background-color: #222;
+    color: #f8f9fa;
+}
+body.dark-mode textarea,
+body.dark-mode input[type=text] {
+    background-color: #333;
+    color: #f8f9fa;
+    border-color: #888;
+}

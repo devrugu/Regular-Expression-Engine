@@ -7,10 +7,11 @@
     <title>Regex</title>
     <link rel="stylesheet" href="style2.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css'>
 </head>
 <body>
-    <div class="container">
-        <div class="navbar">
+    <div class="container-fluid">
+        <div class="navbar navbar-dark bg-primary justify-content-between">
             <div class="logo">
                 <a href="#">REGEX |</a>
                 <i class="fas fa-search fa-2x"></i>
@@ -20,6 +21,7 @@
             <ul>
                 <li><a href="#">Automata Project</a> </li>
             </ul>
+                <button id="themeToggle" class="btn btn-secondary">Dark Mode</button>
         </div>
         <div class="column">
              <label for="regex">Regex:</label>
@@ -38,11 +40,21 @@
             <div class="buttonloc">
             <button class="nfa-button" onclick="createMatcher(regexp.value,text.value)">NFA</button>
             <script src="regex.js"></script>
+    <script>
+      const text = document.getElementById("text");
+      const regexp = document.getElementById("regexp");
+      text.addEventListener("input", () => createMatcher(regexp.value, text.value));
+      regexp.addEventListener("input", () => createMatcher(regexp.value, text.value));
+      document.getElementById("themeToggle").addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+      });
+    </script>
            
             </div>
             </div>
     
 
     
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html> 
