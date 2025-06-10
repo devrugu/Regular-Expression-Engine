@@ -341,15 +341,18 @@ function createMatcher(exp, kelime) {
     result.removeChild(result.firstChild);
   }
 
-  const words = kelime.split(/\s+/).filter(Boolean);
+  const tokens = kelime.split(/(\s+)/);
+  let output = "";
 
-  for (const word of words) {
-    if (hatirla(nfa, word)) {
-      const div = document.createElement("div");
-      div.textContent = word;
-      result.appendChild(div);
+  for (const token of tokens) {
+    if (token.trim() && hatirla(nfa, token)) {
+      output += `<mark>${token}</mark>`;
+    } else {
+      output += token;
     }
   }
+
+  result.innerHTML = output;
 }
 
 
