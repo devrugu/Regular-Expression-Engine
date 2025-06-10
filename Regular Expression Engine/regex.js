@@ -198,6 +198,105 @@ function artiNFA(nfa) {
 }
 
 /*
+      NFA'den DFA'ya donusum icin epsilon-kapanis fonksiyonu.
+  */
+function epsilonKapanisi(states) {
+  const stack = [...states];
+  const closure = new Set(stack);
+  while (stack.length) {
+    const state = stack.pop();
+    for (const st of state.bosBaglanti) {
+      if (!closure.has(st)) {
+        closure.add(st);
+        stack.push(st);
+      }
+    }
+  }
+  return Array.from(closure);
+}
+
+/*
+      Verilen sembol uzerinden gidilebilecek durumlari bulan fonksiyon.
+  */
+function move(states, symbol) {
+  const result = new Set();
+  for (const state of states) {
+    const nxt = state.baglanti[symbol];
+    if (nxt) {
+      result.add(nxt);
+    }
+  }
+  return Array.from(result);
+}
+
+/*
+      Thompson NFA'sini deterministik DFA'ya donusturen fonksiyon.
+  */
+function NFAToDFA(nfa) {
+  const stateId = new Map();
+  let id = 0;
+  const getId = (st) => {
+    if (!stateId.has(st)) stateId.set(st, id++);
+    return stateId.get(st);
+  };
+
+  function keyOf(states) {
+    return states.map(getId).sort((a, b) => a - b).join(',');
+  }
+
+  const startClosure = epsilonKapanisi([nfa.baslangic]);
+  const startKey = keyOf(startClosure);
+  const dfaStates = {};
+  const queue = [];
+
+  const createState = (nfaStates) => {
+    const key = keyOf(nfaStates);
+    if (dfaStates[key]) return dfaStates[key];
+    const dfaState = {
+      key,
+      nfaStates,
+      kabul: nfaStates.some((s) => s.bitisMi),
+      baglanti: {},
+    };
+    dfaStates[key] = dfaState;
+    queue.push(dfaState);
+    return dfaState;
+  };
+
+  const baslangic = createState(startClosure);
+
+  while (queue.length) {
+    const current = queue.shift();
+    const symbols = new Set();
+    for (const st of current.nfaStates) {
+      for (const sym in st.baglanti) {
+        symbols.add(sym);
+      }
+    }
+
+    for (const sym of symbols) {
+      const nextStates = epsilonKapanisi(move(current.nfaStates, sym));
+      const next = createState(nextStates);
+      current.baglanti[sym] = next;
+    }
+  }
+
+  return { baslangic, dfaStates };
+}
+
+/*
+      DFA uzerinde arama yapan fonksiyon.
+  */
+function dfaAra(dfa, kelime) {
+  let current = dfa.baslangic;
+  for (const ch of kelime) {
+    current = current.baglanti[ch];
+    if (!current) return false;
+  }
+  return current.kabul;
+}
+
+/*
     Postfix donusumu yapilmis Regular Expression'ı, Thompson Algoritmasini kullanarak NFA'e donusturen fonksiyon.
   */
 function NFADonusumu(postfixRegex) {
@@ -335,6 +434,7 @@ function createMatcher(exp, kelime) {
   const postfixRegex = postfixDonusumu(concatliRegex);
   console.log(postfixRegex);
   const nfa = NFADonusumu(postfixRegex);
+  const dfa = NFAToDFA(nfa);
 
   const result = document.getElementById("sonuc");
   while (result.firstChild) {
@@ -345,7 +445,7 @@ function createMatcher(exp, kelime) {
   let output = "";
 
   for (const token of tokens) {
-    if (token.trim() && hatirla(nfa, token)) {
+    if (token.trim() && dfaAra(dfa, token)) {
       output += `<mark>${token}</mark>`;
     } else {
       output += token;
