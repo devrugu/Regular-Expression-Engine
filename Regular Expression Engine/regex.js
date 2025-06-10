@@ -335,20 +335,21 @@ function createMatcher(exp, kelime) {
   // console.log(str);
   
   let string = "";
-  let rstring = "";
   let token;
 
   for(let i = 0; i<kelime.length; i++)
   {
     token = kelime[i];
-    
-    if(token === " ")
+
+    if (token === " ")
     {
-      i++;
-      rstring = string;
-      string = string.substr(i);
+      while (i + 1 < kelime.length && kelime[i + 1] === " ") {
+        i++;
+      }
+      string = "";
+      continue;
     }
-    
+
     string += token;
 
     if(hatirla(nfa, string))
