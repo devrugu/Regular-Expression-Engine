@@ -295,16 +295,22 @@ function iciceAra(nfa, kelime) {
       string = "";
     }
     string += token;
-    if (hatirla(nfa, string) == true) {
-      //console.log(string);
-      document.getElementById("sonuc").innerHTML += string + "</br>";
-    }
+      if (hatirla(nfa, string) == true) {
+        //console.log(string);
+        const result = document.getElementById("sonuc");
+        const div = document.createElement("div");
+        div.textContent = string;
+        result.appendChild(div);
+      }
   }
   return string;
 }
 
 function changeEvent() {
-  document.getElementById("sonuc").innerHTML = "";
+  const result = document.getElementById("sonuc");
+  while (result.firstChild) {
+    result.removeChild(result.firstChild);
+  }
 }
 
 /*
@@ -354,7 +360,10 @@ function createMatcher(exp, kelime) {
 
     if(hatirla(nfa, string))
     {
-      document.getElementById("sonuc").innerHTML += string + "</br>";
+      const result = document.getElementById("sonuc");
+      const div = document.createElement("div");
+      div.textContent = string;
+      result.appendChild(div);
     }
 
   }
