@@ -335,40 +335,21 @@ function createMatcher(exp, kelime) {
   const postfixRegex = postfixDonusumu(concatliRegex);
   console.log(postfixRegex);
   const nfa = NFADonusumu(postfixRegex);
-  
-  // str = JSON.stringify(nfa);
-  // str = JSON.stringify(nfa, null, 4); // (Optional) beautiful indented output.
-  // console.log(str);
-  
-  let string = "";
-  let token;
 
-  for(let i = 0; i<kelime.length; i++)
-  {
-    token = kelime[i];
+  const result = document.getElementById("sonuc");
+  while (result.firstChild) {
+    result.removeChild(result.firstChild);
+  }
 
-    if (token === " ")
-    {
-      while (i + 1 < kelime.length && kelime[i + 1] === " ") {
-        i++;
-      }
-      string = "";
-      continue;
-    }
+  const words = kelime.split(/\s+/).filter(Boolean);
 
-    string += token;
-
-    if(hatirla(nfa, string))
-    {
-      const result = document.getElementById("sonuc");
+  for (const word of words) {
+    if (hatirla(nfa, word)) {
       const div = document.createElement("div");
-      div.textContent = string;
+      div.textContent = word;
       result.appendChild(div);
     }
-
   }
-  
-
-  //console.log(hatirla(nfa, kelime));
 }
+
 
