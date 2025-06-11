@@ -1,25 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 
 *{
     margin:0;
     padding:0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: 'Roboto', sans-serif;
 }
 
 .container{
-   
-    background: linear-gradient(135deg, #f0e6ff, #d6d4e0);
-    
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
     height: 100vh;
     background-size: 100% 100%;
-    
 }
 .container .navbar{
-    width: 100%;    
+    width: 100%;
     height: 80px;
-    background-color: #622569;
-
+    background-color: #3f51b5;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 .navbar .logo{
     display:inline-block;   
@@ -61,14 +62,14 @@
     user-select: none;
 }
 .center h1{
-    color: #622569;
+    color: #3f51b5;
     font-size: 70px;
     font-weight: bold;
     width: 900px;
     text-align: center;
 }
 .center h2{
-    color: #622569;
+    color: #3f51b5;
     font-size: 40px;
     font-weight: bold;
     width: 885px;
