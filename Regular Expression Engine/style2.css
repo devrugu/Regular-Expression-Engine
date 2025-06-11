@@ -1,24 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 *{
     margin:0;
     padding:0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: 'Roboto', sans-serif;
 }
 
 .container{
-   
-    background: linear-gradient(135deg, #f0e6ff, #d6d4e0);
-    
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
     height: 100vh;
     background-size: 100% 100%;
-    
 }
 .container .navbar{
     width: 100%;
     height: 80px;
-    background: #622569;
-
+    background: #3f51b5;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 .navbar .logo{
     display:inline-block;   
@@ -74,20 +75,17 @@ input[type=text] {
     font-family: sans-serif;
     width: 50%;
     padding: 8px 20px;
-    border: 2px solid #622569;
+    border: 2px solid #3f51b5;
     border-left-width: 3px;
     border-radius: 5px;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 }
 input[type=text]:focus{
-  
-        width: 100%;    
+        width: 100%;
         outline:none;
-      
         border: 1px solid #eee;
-      
-        border-left: 3px solid #622569;
+        border-left: 3px solid #3f51b5;
 }
 textarea {
     width: 120%;
@@ -95,7 +93,7 @@ textarea {
     padding: 12px 20px;
     color: black;
     box-sizing: border-box;
-    border: 2px solid #622569;
+    border: 2px solid #3f51b5;
     border-radius: 8px;
     background-color: #f8f8f8;
     resize: none;
@@ -106,16 +104,22 @@ textarea {
     left: 940px;
 }
 
-.nfa-button {
-    background-color:#622569;
+.apply-button {
+    background-color:#3f51b5;
     color:white;
     border-radius:25px;
     padding:8px 20px;
     border:none;
+    cursor:pointer;
+    box-shadow:0 2px 4px rgba(0,0,0,0.1);
+    transition:background-color 0.3s ease;
+}
+.apply-button:hover{
+    background-color:#303f9f;
 }
 #sonuc{
     background-color: white;
-    border: 2px solid #622569;
+    border: 2px solid #3f51b5;
     border-radius: 8px;
     width: 120%;
     color:black ;

@@ -10,7 +10,7 @@ how state machines work.
 
 1. Open `index.html` or `indexC.html` in a modern web browser.
 2. Enter a regular expression and the text to search.
-3. Click **NFA** to run the matcher and view the results under the
+3. Click **Apply** to run the matcher and view the results under the
    search box.  Internally the NFA is converted to a DFA before the
    search is performed.
 
